@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 movement = new Vector3(movementX, 0.0f, movementY);
 
-        rb.AddForce(force:movement * speed);
+        rb.AddForce(force: movement * speed);
 
     }
     void OnMove(InputValue movementValue)
@@ -25,10 +25,18 @@ public class PlayerController : MonoBehaviour
         // convert input value into a Vector2 for movement
         Vector2 movementVector = movementValue.Get<Vector2>();
 
-    // store the x & y components of the movement 
+        // store the x & y components of the movement 
         movementX = movementVector.x;
         movementY = movementVector.y;
 
-        
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PickUp"))
+        {
+            other.gameObject.SetActive(false);
+        }
+       
     }
 }
