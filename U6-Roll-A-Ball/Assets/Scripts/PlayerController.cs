@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
+    private int count;
     private float movementX;
     private float movementY;
     [SerializeField] private float speed = 0;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     {
         //get & store the Rigidbody component attatched to player
         rb = GetComponent<Rigidbody>();
+        count = 0;
     }
 
     private void FixedUpdate()
@@ -36,6 +38,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("PickUp"))
         {
             other.gameObject.SetActive(false);
+            count = count + 1;
         }
        
     }
