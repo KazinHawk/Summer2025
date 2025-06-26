@@ -27,6 +27,19 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(force: movement * speed);
 
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+
+            winTextObject.gameObject.SetActive(true);
+            winTextObject.GetComponent<TextMeshProUGUI>().text = "You Lose!";
+
+            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        }
+    }
+
     void OnMove(InputValue movementValue)
     {
         // convert input value into a Vector2 for movement
